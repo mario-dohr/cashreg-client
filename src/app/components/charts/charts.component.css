@@ -1,0 +1,30 @@
+div {
+    background-color: red;
+    margin: 1em;
+}
+
+.div-inline {
+    width: 20%;
+    display: inline;
+}
+
+.div-inline:hover {
+    background-color: blue;
+    color:wheat;
+}
+
+.div-inline-block:active {
+    background-color: aqua;
+}
+
+.div-inline-block {
+    
+    display: inline-block;
+}
+
+.container-20 {
+    background-color: gray;
+    display: block;
+    width:20%;
+}
+

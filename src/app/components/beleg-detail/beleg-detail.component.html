@@ -1,0 +1,57 @@
+<h2>Beleg - Detail</h2>
+<div class="container-sm g-3">
+    <div class="row g-3 mb-4">
+        <div class="col-md-2">
+            <label for="belegNr">Belegnr.</label>
+            <input type="text" id="belegNr" class="form-control" value="{{currentBeleg.belegNr}}" disabled readonly>
+        </div>
+        <div class="col-md-2">
+            <label for="belegNr">Datum</label>
+            <input type="text" id="datum" class="form-control" value="{{currentBeleg.datum}}" disabled readonly>
+        </div>
+        <div class="col-md-2">
+            <label for="uhrzeit">Uhrzeit</label>
+            <input type="text" id="uhrzeit" class="form-control" value="{{currentBeleg.uhrzeit}}" disabled readonly>
+        </div>
+    </div>
+    <div class="row g-3 mb-4">
+        <div class="col-md-4">
+            <label for="belegNr">Mitarbeiter</label>
+            <input type="text" id="mitarbeiter" class="form-control" value="{{currentBeleg.mitarbeiter}}" disabled
+                readonly>
+        </div>
+        <div class="col-md-2">
+            <label for="gesamtbetrag">Gesamtbetrag</label>
+            <input type="text" id="gesamtbetrag" class="form-control" value="{{currentBeleg.gesamtbetrag | currency : 'EUR':
+            'symbol': '1.2-2'}}" disabled readonly>
+        </div>
+    </div>
+    <div class="row g-3 mb-4">
+        <div class="col-md-12">
+            <label for="qrcode">QR-Code</label>
+            <input type="text" id="qrcode" class="form-control" value="{{currentBeleg.qrcode}}" disabled readonly>
+        </div>
+    </div>
+    <div class="row g-3 mb-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Produkt</th>
+                    <th scope="col">Betrag</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let zeile of currentBeleg.belegZeilen; index as i">
+                    <th scope="row">{{ i + 1 }}</th>
+                    <td>{{ zeile.produkt }}</td>
+                    <td>{{ zeile.betrag  | currency : 'EUR':
+                        'symbol': '1.2-2'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-md-flex justify-content-md-start">
+        <button type="Zurück" class="btn btn-dark  " (click)="getBack()">Zurück</button>
+    </div>
+</div>

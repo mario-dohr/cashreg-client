@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <table *ngIf="belege" class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Belegnr.</th>
+          <th scope="col">Datum</th>
+          <th scope="col">Uhrzeit</th>
+          <th scope="col">Mitarbeiter</th>
+          <th scope="col">Gesamtbetrag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let b of belege | slice: (page-1) * pageSize : page * pageSize;index as i" (click)="showDetail(b)">
+          <th scope="row">{{ (page-1) * pageSize + i + 1 }}</th>
+          <td>{{ b.belegNr }}</td>
+          <td>{{ b.datum }}</td>
+          <td>{{ b.uhrzeit }}</td>
+          <td>{{ b.mitarbeiter }}</td>
+          <td>{{ b.gesamtbetrag | currency : 'EUR':
+            'symbol': '1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="row">
+    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+     [boundaryLinks]="true" [rotate]="true" [maxSize]="5">
+    </ngb-pagination>
+  </div>
+</div>
