@@ -1,3 +1,4 @@
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable,of } from 'rxjs';
@@ -5,6 +6,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Beleg } from '../models/beleg.model';
 
+type serverData = {count:number, data:Beleg[]};
 const baseUrl = "http://localhost:8080/api/belege"
 @Injectable({
   providedIn: 'root'
@@ -13,23 +15,35 @@ export class BelegService {
 
   constructor(private http: HttpClient) { }
 
-  getAll() : Observable<Beleg[]> {
-    return this.http.get<Beleg[]>(baseUrl)
+  getAll(page?: number,von?: NgbDateStruct, bis?: NgbDateStruct) : Observable<serverData> {
+    let url = page ? `${baseUrl}?page=${page}` : `${baseUrl}?page=0`;
+    if (von) {
+      url = `${url}&von=${this.toDateString(von)}`;
+    }
+    if (bis) {
+      url =`${url}&bis=${this.toDateString(bis)}`;
+    }
+    console.log('url:'+url);
+    return this.http.get<serverData>(url)
     .pipe(
-      catchError(this.handleError<Beleg[]>('getAll',[])));
+      catchError(this.handleError<serverData>('getAll')));
   }
 
   getBeleg(id: number) : Observable<Beleg> {
     return this.http.get(`${baseUrl}/${id}`)
     .pipe(
-      catchError(this.handleError<Beleg>('getBeleg'))); 
+      catchError(this.handleError<Beleg>('getBeleg')));
   }
 
   getChartData() : Observable<any> {
     return this.http.get(`${baseUrl}/charts`)
     .pipe(
       catchError(this.handleError<any>('getChartData')));
-    
+
+  }
+
+  private toDateString(d? : NgbDateStruct) : string {
+    return d ? `${d.year}-${d.month}-${d.day}` : '';
   }
   /**
  * Handle Http operation that failed.

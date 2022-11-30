@@ -1,4 +1,44 @@
 <div class="container">
+  <div class="row mt-2 mb-2">
+    <div class="col-md-2">
+      <label for="datumVon">von</label>
+      <div class="input-group">
+        <input
+          id="datumVon"
+          placeholder="yyyy-mm-dd"
+          class="form-control"
+          [(ngModel)]="von"
+          ngbDatepicker
+          #d1="ngbDatepicker"
+          (dateSelect)="onDateChanged($event)" readonly
+        />
+        <button
+          class="btn btn-outline-secondary bi bi-calendar3"
+          (click)="d1.toggle()"
+          type="button"
+        ></button>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <label for="datumBis">bis</label>
+      <div class="input-group">
+        <input
+          id="datumBis"
+          placeholder="yyyy-mm-dd"
+          class="form-control"
+          [(ngModel)]="bis"
+          ngbDatepicker
+          #d2="ngbDatepicker"
+          (dateSelect)="onDateChanged($event)" readonly
+        />
+        <button
+          class="btn btn-outline-secondary bi bi-calendar3"
+          (click)="d2.toggle()"
+          type="button"
+        ></button>
+      </div>
+    </div>
+  </div>
   <div class="row">
     <table *ngIf="belege" class="table table-striped">
       <thead>
@@ -12,21 +52,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let b of belege | slice: (page-1) * pageSize : page * pageSize;index as i" (click)="showDetail(b)">
-          <th scope="row">{{ (page-1) * pageSize + i + 1 }}</th>
+        <tr *ngFor="let b of belege; index as i" (click)="showDetail(b)">
+          <th scope="row">{{ (page - 1) * pageSize + i + 1 }}</th>
           <td>{{ b.belegNr }}</td>
           <td>{{ b.datum }}</td>
           <td>{{ b.uhrzeit }}</td>
           <td>{{ b.mitarbeiter }}</td>
-          <td>{{ b.gesamtbetrag | currency : 'EUR':
-            'symbol': '1.2-2' }}</td>
+          <td>{{ b.gesamtbetrag | currency: "EUR":"symbol":"1.2-2" }}</td>
         </tr>
       </tbody>
     </table>
   </div>
   <div class="row">
-    <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
-     [boundaryLinks]="true" [rotate]="true" [maxSize]="5">
+    <ngb-pagination
+      [collectionSize]="collectionSize"
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [boundaryLinks]="true"
+      [rotate]="true"
+      [maxSize]="5"
+      (pageChange)="retrieveBelege()"
+    >
     </ngb-pagination>
   </div>
 </div>
