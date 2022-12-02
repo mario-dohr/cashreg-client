@@ -10,3 +10,14 @@ drwxr-xr-x.   5 mario mario   4096 Dec  2 16:33 src
 -rw-r--r--.   1 mario mario    287 Nov 28 11:38 tsconfig.app.json
 -rw-r--r--.   1 mario mario    906 Nov 28 11:45 tsconfig.json
 -rw-r--r--.   1 mario mario    333 Nov 28 11:38 tsconfig.spec.json
+angular.json
+karma.conf.js
+node_modules
+package.json
+package-lock.json
+README.md
+src
+test.txt
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json
