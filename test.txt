@@ -1,0 +1,12 @@
+total 944
+-rw-r--r--.   1 mario mario   3103 Nov 28 11:45 angular.json
+-rw-r--r--.   1 mario mario   1431 Nov 28 11:38 karma.conf.js
+drwxr-xr-x. 649 mario mario  20480 Nov 28 11:46 node_modules
+-rw-r--r--.   1 mario mario   1369 Dec  2 16:33 package.json
+-rw-r--r--.   1 mario mario 911233 Dec  2 16:33 package-lock.json
+-rw-r--r--.   1 mario mario   1067 Nov 28 11:38 README.md
+drwxr-xr-x.   5 mario mario   4096 Dec  2 16:33 src
+-rw-r--r--.   1 mario mario      0 Dec  2 16:38 test.txt
+-rw-r--r--.   1 mario mario    287 Nov 28 11:38 tsconfig.app.json
+-rw-r--r--.   1 mario mario    906 Nov 28 11:45 tsconfig.json
+-rw-r--r--.   1 mario mario    333 Nov 28 11:38 tsconfig.spec.json
